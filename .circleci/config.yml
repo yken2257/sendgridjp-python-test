@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/
+    docker:
+      - image: cimg/python
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo pipenv install
+            pipenv shell
+            python -m unittest
