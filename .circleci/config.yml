@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  test:
     docker:
       - image: cimg/python:3.10
     steps:
@@ -23,6 +23,19 @@ jobs:
           name: Show versions
           command: |
             sudo apt install -y jq
-            echo "sendgrid library version"
-            cat Pipfile.lock | jq -r .default.sendgrid.version
+            VER=$(cat Pipfile.lock | jq -r .default.sendgrid.version)
+            echo "sendgrid-library: Version$VER"
             python --version
+
+workflows:
+  version: 2
+  monthly_workflow:
+    triggers:
+      - schedule:
+          cron: "0 0 2 * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - test
