@@ -10,7 +10,6 @@ jobs:
           command: |
             pip install pipenv
             pipenv install
-            pipenv shell
       - run:
           name: Unittest
           command: python -m unittest
