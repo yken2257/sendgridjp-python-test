@@ -7,4 +7,5 @@ name = "pypi"
 sendgrid = "*"
 python-dotenv = "*"
 
-[dev-packages]
+[scripts]
+test = "python -m unittest"

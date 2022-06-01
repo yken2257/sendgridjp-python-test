@@ -12,7 +12,7 @@ jobs:
             pipenv install
       - run:
           name: Unittest
-          command: python -m unittest
+          command: pipenv run test
       - run:
           name: Show versions
           command: |
