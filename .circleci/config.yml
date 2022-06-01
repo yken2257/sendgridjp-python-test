@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -6,11 +6,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: unittest
           command: |
             pip install pipenv
-            export PYTHONUNBUFFERED=1
             pipenv install
             pipenv shell
             python -m unittest
             pip show sendgrid
             python --version
+          no_output_timeout: 30m
