@@ -8,6 +8,7 @@ jobs:
       - run:
           command: |
             pip install pipenv
+            export PYTHONUNBUFFERED=1
             pipenv install
             pipenv shell
             python -m unittest
