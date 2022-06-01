@@ -6,12 +6,16 @@ jobs:
     steps:
       - checkout
       - run:
-          name: unittest
+          name: Activate virtualenv
           command: |
             pip install pipenv
             pipenv install
             pipenv shell
-            python -m unittest
+      - run:
+          name: Unittest
+          command: python -m unittest
+      - run:
+          name: Show versions
+          command: |
             pip show sendgrid
             python --version
-          no_output_timeout: 30m
