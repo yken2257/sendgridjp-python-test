@@ -1,0 +1,8 @@
+tasks:
+  - init: |
+      sudo apt install -y jq
+      curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | sudo bash
+
+vscode:
+  extensions:
+    - "ms-python.python"

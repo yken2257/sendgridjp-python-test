@@ -56,13 +56,13 @@ def send_mail():
                                     Disposition('attachment'))
 
     # メール送信を行い、レスポンスを表示
-    #sendgrid_client = SendGridAPIClient(sendgrid_api_key)
-    #response = sendgrid_client.send(message = message)
-    #print(response.status_code)
-    #print(response.body)
-    #print(response.headers)
+    sendgrid_client = SendGridAPIClient(sendgrid_api_key)
+    response = sendgrid_client.send(message = message)
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
 
-    #return response.status_code
-    return "201"
+    return response.status_code
+    #return 202
 if __name__ == '__main__':
     send_mail()

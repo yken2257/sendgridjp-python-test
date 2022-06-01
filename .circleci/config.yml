@@ -11,10 +11,18 @@ jobs:
             pip install pipenv
             pipenv install
       - run:
+          name: Setup env
+          command: |
+            echo "API_KEY=$SENDGRID_API_KEY" >> .env
+            echo "TOS=alice@sink.sendgrid.net,bob@sink.sendgrid.net,carol@sink.sendgrid.net" >> .env
+            echo "FROM=you@example.com" >> .env
+      - run:
           name: Unittest
           command: pipenv run test
       - run:
           name: Show versions
           command: |
-            pip show sendgrid
+            sudo apt install -y jq
+            echo "sendgrid library version"
+            cat Pipfile.lock | jq -r .default.sendgrid.version
             python --version
