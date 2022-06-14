@@ -17,18 +17,20 @@ jobs:
             echo "TOS=alice@sink.sendgrid.net,bob@sink.sendgrid.net,carol@sink.sendgrid.net" >> .env
             echo "FROM=you@example.com" >> .env
       - run:
-          name: Unittest
-          command: pipenv run test
-      - run:
           name: Show versions
           command: |
-            sudo apt install -y jq
             VER=$(cat Pipfile.lock | jq -r .default.sendgrid.version)
             echo "sendgrid-library: Version$VER"
             python --version
+      - run:
+          name: Unittest
+          command: pipenv run test
 
 workflows:
   version: 2
+  normal_deploy_workflow:
+    jobs:
+      - test
   monthly_workflow:
     triggers:
       - schedule:
